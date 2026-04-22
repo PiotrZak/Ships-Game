@@ -5,7 +5,7 @@ BattleShips game from scratch:
 
 - <b>Pvp</b> -> Player vs Player
 - <b>PvA</b> -> Player vs Ai
-- <b>AvA</b> -> Ai vs Ai
+- <b>AvA</b> -> Ai vs Ai 
 
 ![Screen.png](Screen.png)
 
