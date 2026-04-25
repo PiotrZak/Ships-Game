@@ -4,6 +4,53 @@ namespace GameEngine.Logic;
 
 public abstract class PopulateShips
 {
+    /// <summary>Places a custom subset of ship classes randomly on the map.</summary>
+    public static PlayerFleet RandomLocalizeWithFleet(Map map, AllocationType allocateType, IEnumerable<ShipClass> ships)
+    {
+        Random random = new Random();
+        var fleet = new PlayerFleet();
+
+        int maxRow = map.Coordinates.Keys.Max(k => k.Item1);
+        int maxCol = map.Coordinates.Keys.Max(k => k.Item2);
+
+        foreach (var shipClass in ships)
+        {
+            Console.WriteLine("Placing " + shipClass);
+            int length = (int)shipClass;
+            bool isHorizontal = random.Next(2) == 0;
+
+            int startX = random.Next(maxRow);
+            int startY = random.Next(maxCol);
+
+            bool isNotOccupied = false;
+            while (!isNotOccupied)
+            {
+                isNotOccupied = IsPlaceForShip(map, isHorizontal, length, startX, startY);
+
+                if (isNotOccupied)
+                {
+                    var shipPosition = new Dictionary<(int, int), bool>();
+                    for (int i = 0; i < length; i++)
+                    {
+                        var coordinate = isHorizontal ? (startX + i, startY) : (startX, startY + i);
+                        shipPosition[coordinate] = true;
+                    }
+
+                    var newShip = new Ship(shipPosition, length, shipClass.ToString());
+                    fleet.AddShip(shipClass.ToString(), newShip);
+                    PlaceShipOnMap(map, (startX, startY), length, isHorizontal, allocateType);
+                }
+                else
+                {
+                    startX = random.Next(maxRow);
+                    startY = random.Next(maxCol);
+                }
+            }
+        }
+
+        return fleet;
+    }
+
     public static PlayerFleet RandomLocalize(Map map, AllocationType allocateType)
     {
         Random random = new Random();

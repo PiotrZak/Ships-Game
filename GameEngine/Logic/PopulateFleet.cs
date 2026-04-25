@@ -15,4 +15,16 @@ public class PopulateFleet
         
         return playerFleet;
     }
+
+    /// <summary>Builds a fleet using only the specified ship classes (used for special modes).</summary>
+    public static PlayerFleet BuildCustomFleet(Map map, Player player, IEnumerable<ShipClass> ships)
+    {
+        var allocateType = AllocationType.EnemyShip;
+        Console.WriteLine("Building " + player.Name + " fleet");
+
+        var playerFleet = PopulateShips.RandomLocalizeWithFleet(map, allocateType, ships);
+        playerFleet.AssignPlayer(player);
+
+        return playerFleet;
+    }
 }

@@ -10,16 +10,12 @@
         "dependencies": {
           "GameEngine": "1.0.0",
           "Microsoft.NET.Test.Sdk": "17.5.0",
-          "NUnit": "3.13.3",
-          "NUnit.Analyzers": "3.6.1",
-          "NUnit3TestAdapter": "4.4.2",
-          "coverlet.collector": "3.2.0"
+          "NUnit": "3.13.3"
         },
         "runtime": {
           "Tests.dll": {}
         }
       },
-      "coverlet.collector/3.2.0": {},
       "Microsoft.CodeCoverage/17.5.0": {
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.VisualStudio.CodeCoverage.Shim.dll": {
@@ -34,11 +30,9 @@
           "Microsoft.TestPlatform.TestHost": "17.5.0"
         }
       },
-      "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.TestPlatform.ObjectModel/17.5.0": {
         "dependencies": {
-          "NuGet.Frameworks": "5.11.0",
-          "System.Reflection.Metadata": "1.6.0"
+          "NuGet.Frameworks": "5.11.0"
         },
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.TestPlatform.CoreUtilities.dll": {
@@ -282,11 +276,6 @@
           }
         }
       },
-      "NETStandard.Library/2.0.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0"
-        }
-      },
       "Newtonsoft.Json/13.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -304,9 +293,6 @@
         }
       },
       "NUnit/3.13.3": {
-        "dependencies": {
-          "NETStandard.Library": "2.0.0"
-        },
         "runtime": {
           "lib/netstandard2.0/nunit.framework.dll": {
             "assemblyVersion": "3.13.3.0",
@@ -314,12 +300,12 @@
           }
         }
       },
-      "NUnit.Analyzers/3.6.1": {},
-      "NUnit3TestAdapter/4.4.2": {},
-      "System.Reflection.Metadata/1.6.0": {},
       "GameEngine/1.0.0": {
         "runtime": {
-          "GameEngine.dll": {}
+          "GameEngine.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -329,13 +315,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "coverlet.collector/3.2.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-xjY8xBigSeWIYs4I7DgUHqSNoGqnHi7Fv7/7RZD02rvZyG3hlsjnQKiVKVWKgr9kRKgmV+dEfu8KScvysiC0Wg==",
-      "path": "coverlet.collector/3.2.0",
-      "hashPath": "coverlet.collector.3.2.0.nupkg.sha512"
     },
     "Microsoft.CodeCoverage/17.5.0": {
       "type": "package",
@@ -351,13 +330,6 @@
       "path": "microsoft.net.test.sdk/17.5.0",
       "hashPath": "microsoft.net.test.sdk.17.5.0.nupkg.sha512"
     },
-    "Microsoft.NETCore.Platforms/1.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
-      "path": "microsoft.netcore.platforms/1.1.0",
-      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
-    },
     "Microsoft.TestPlatform.ObjectModel/17.5.0": {
       "type": "package",
       "serviceable": true,
@@ -371,13 +343,6 @@
       "sha512": "sha512-X86aikwp9d4SDcBChwzQYZihTPGEtMdDk+9t64emAl7N0Tq+OmlLAoW+Rs+2FB2k6QdUicSlT4QLO2xABRokaw==",
       "path": "microsoft.testplatform.testhost/17.5.0",
       "hashPath": "microsoft.testplatform.testhost.17.5.0.nupkg.sha512"
-    },
-    "NETStandard.Library/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
-      "path": "netstandard.library/2.0.0",
-      "hashPath": "netstandard.library.2.0.0.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",
@@ -399,27 +364,6 @@
       "sha512": "sha512-KNPDpls6EfHwC3+nnA67fh5wpxeLb3VLFAfLxrug6JMYDLHH6InaQIWR7Sc3y75d/9IKzMksH/gi08W7XWbmnQ==",
       "path": "nunit/3.13.3",
       "hashPath": "nunit.3.13.3.nupkg.sha512"
-    },
-    "NUnit.Analyzers/3.6.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-RKP9tpKfl3DmRgUDGgh3XM3XzeLMrCXXMZm6vm1nMsObZ6vtQL1L9NrK7+oZh1jWearvNsbMis2+AIOY3NFmow==",
-      "path": "nunit.analyzers/3.6.1",
-      "hashPath": "nunit.analyzers.3.6.1.nupkg.sha512"
-    },
-    "NUnit3TestAdapter/4.4.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-vA/iHYcR+LYw+pRWQugckC/zW2fXHaqMr2uA82NOBt8v4YK4wMJrQ7QC8XLc7PjetEZ96cPbBTWsDDtmQiRZTA==",
-      "path": "nunit3testadapter/4.4.2",
-      "hashPath": "nunit3testadapter.4.4.2.nupkg.sha512"
-    },
-    "System.Reflection.Metadata/1.6.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-COC1aiAJjCoA5GBF+QKL2uLqEBew4JsCkQmoHKbN3TlOZKa2fKLz5CpiRQKDz0RsAOEGsVKqOD5bomsXq/4STQ==",
-      "path": "system.reflection.metadata/1.6.0",
-      "hashPath": "system.reflection.metadata.1.6.0.nupkg.sha512"
     },
     "GameEngine/1.0.0": {
       "type": "project",

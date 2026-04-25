@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "/Users/piotrzak/.nuget/packages/": {}
+    "/home/runner/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/piotrzak/Documents/GitHub/Battleships/GameEngine/GameEngine.csproj",
+      "projectUniqueName": "/home/runner/work/Ships-Game/Ships-Game/GameEngine/GameEngine.csproj",
       "projectName": "GameEngine",
-      "projectPath": "/Users/piotrzak/Documents/GitHub/Battleships/GameEngine/GameEngine.csproj",
-      "packagesPath": "/Users/piotrzak/.nuget/packages/",
-      "outputPath": "/Users/piotrzak/Documents/GitHub/Battleships/GameEngine/obj/",
+      "projectPath": "/home/runner/work/Ships-Game/Ships-Game/GameEngine/GameEngine.csproj",
+      "packagesPath": "/home/runner/.nuget/packages/",
+      "outputPath": "/home/runner/work/Ships-Game/Ships-Game/GameEngine/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/piotrzak/.nuget/NuGet/NuGet.Config"
+        "/home/runner/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -38,7 +38,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net7.0": {
@@ -54,12 +60,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[7.0.20, 7.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.20, 7.0.20]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }

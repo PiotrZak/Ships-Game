@@ -4,25 +4,39 @@ namespace GameEngine.Logic;
 
 public abstract class ShotLogic
 {
-    public static void Shot(PlayerFleet playerFleet, Map map, GameMode mode, int round)
+    /// <summary>
+    /// Executes one shot turn for the current player.
+    /// </summary>
+    /// <param name="targetFleet">The fleet being shot at.</param>
+    /// <param name="targetMap">The map that tracks shot results for the target fleet.</param>
+    /// <param name="isAiTurn">When true the shot is chosen automatically.</param>
+    /// <param name="smartAI">
+    /// Optional SmartAI instance.  When provided it supplies the shot coordinate
+    /// and is updated with the result so it can learn for subsequent turns.
+    /// When null an AI turn falls back to random selection.
+    /// </param>
+    public static void Shot(PlayerFleet targetFleet, Map targetMap, bool isAiTurn, SmartAI? smartAI = null)
     {
         while (true)
         {
             Console.WriteLine("Where to shot? (eg A5)");
-            
-            var userShotCoordinates = mode switch
+
+            string? userShotCoordinates;
+            if (isAiTurn)
             {
-                GameMode.AvA => AIChoose(),
-                GameMode.PvA => round % 2 != 0 ? Console.ReadLine() : AIChoose(),
-                GameMode.PvP => Console.ReadLine(),
-                _ => throw new ArgumentOutOfRangeException(nameof(mode), mode, null)
-            };
+                userShotCoordinates = smartAI != null ? smartAI.ChooseShot() : AIChoose();
+                Console.WriteLine("AI chooses: " + userShotCoordinates);
+            }
+            else
+            {
+                userShotCoordinates = Console.ReadLine();
+            }
 
             if (Validators.IsInputCorrect(userShotCoordinates))
             {
                 var (x, y) = Parsers.ParseUserInput(userShotCoordinates);
 
-                if (map.Coordinates.TryGetValue((x, y), out var allocationType))
+                if (targetMap.Coordinates.TryGetValue((x, y), out var allocationType))
                 {
                     switch (allocationType)
                     {
@@ -41,13 +55,20 @@ public abstract class ShotLogic
                         case AllocationType.Water:
                         case AllocationType.EnemyShip:
                         default:
-                            HandleHit(playerFleet, map, x, y);
+                            var (wasHit, wasSunk, shipLength) = HandleHit(targetFleet, targetMap, x, y);
+                            if (smartAI != null)
+                            {
+                                if (wasHit) smartAI.RecordHit(x, y);
+                                else smartAI.RecordMiss(x, y);
+                                if (wasSunk) smartAI.RecordSunk(shipLength);
+                            }
                             break;
                     }
                 }
                 else
                 {
                     Console.WriteLine("Key not found - Out Of board");
+                    if (isAiTurn) continue;
                 }
             }
             else
@@ -68,7 +89,7 @@ public abstract class ShotLogic
         return $"{column}{row}";
     }
 
-    public static void HandleHit(PlayerFleet playerFleet, Map map, int x, int y)
+    public static (bool wasHit, bool wasSunk, int shipLength) HandleHit(PlayerFleet playerFleet, Map map, int x, int y)
     {
         var hitted = IsHitted(map, (x, y));
         if (hitted)
@@ -81,7 +102,8 @@ public abstract class ShotLogic
             }
 
             ship.Position[(x, y)] = false;
-            if (ship.IsSunk)
+            bool wasSunk = ship.IsSunk;
+            if (wasSunk)
             {
                 Console.WriteLine("Congrats! enemy ship " + ship.ShipClass + " sunked!");
                 Console.WriteLine("Left Enemy ships " + playerFleet.ShipsLeft());
@@ -90,7 +112,11 @@ public abstract class ShotLogic
             {
                 Console.WriteLine("Enemy Ship " + ship.ShipClass + " hitted - left ship fields: " + ship.Position.Count(isHitted => isHitted.Value));
             }
+
+            return (true, wasSunk, ship.Length);
         }
+
+        return (false, false, 0);
     }
     
     public static bool IsHitted(Map map, (int, int) coordinates)
